@@ -1,0 +1,19 @@
+<div class="container">
+
+  <% if params[:action].include?('edit') %>
+    <h4>Modify the Shop's name</h4>
+    <h1 class="text-center"><%= shop.name %></h1>
+  <% else %>
+    <h1>Create a new shop</h1>
+  <% end -%>
+
+  <div class="container col-8 justify-content-center">
+    <%= simple_form_for shop do |f| %>
+      <%= f.input :name %>
+      <div class="text-end">
+        <%= f.submit "#{params[:action].include?('edit')? 'Edit' : 'Create'}", data: { turbo: false }, class: 'px-4 py-2' %>
+      </div>
+    <% end -%>
+  </div>
+
+</div>

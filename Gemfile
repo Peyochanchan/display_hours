@@ -55,13 +55,13 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem "database_cleaner"
   gem 'rspec-rails', '< 6.0.0.rc1'
   gem 'rails-controller-testing'
-  gem 'dotenv-rails'
-  gem "database_cleaner"
 end
 
 group :development do
+  gem 'dotenv-rails'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem 'pry', '~> 0.13.1'
@@ -85,6 +85,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem 'webdrivers'
-  gem 'warden-rspec-rails'
+  # gem 'warden-rspec-rails'
   gem 'shoulda-matchers', '~> 5.0'
 end
