@@ -1,0 +1,41 @@
+<%= simple_form_for [shop, opening_day], turbo_method: :patch do |f| %>
+  <div data-controller="reveal" data-reveal-hidden-class="hidden">
+    <%= f.hidden_field :weekday, value: opening_day.weekday, readonly: true %>
+
+    <div class="mb-3">
+      <%= f.input :closed, input_html: { data: { action:"change->reveal#toggleClose", reveal_target: 'checkbox_close' } } %>
+    </div>
+
+    <div data-reveal-target="hide_inputs" class="hidden">
+      <div class="mb-3">
+        <%= f.input :opening_time_one, label: 'Opens at', minute_step: 5 %>
+        <%= f.input :closing_time_one, label: 'Closes at', minute_step: 5 %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.input :lunch_break, input_html: { data: { action:"change->reveal#toggleBreak", reveal_target: 'checkbox' } } %>
+      </div>
+
+      <div data-reveal-target="hide_pm_hours" class="mb-3">
+        <%= f.input :opening_time_two, label: 'Re-opens at', minute_step: 5,
+            input_html: { data: { reveal_target: 'hours' } } %>
+        <%= f.input :closing_time_two, label: 'Final Closing', minute_step: 5,
+            input_html: { data: { reveal_target: 'hours' } } %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="text-center">
+    <% if opening_day.id != shop.opening_day_ids.min %>
+      <%= previous_day(shop, opening_day) %>
+    <% end -%>
+
+    <%= f.submit "Edit", class: 'px-4 py-2' %>
+
+    <% if opening_day.id != shop.opening_day_ids.max %>
+      <%= next_day(shop, opening_day) %>
+    <% end -%>
+  </div>
+
+<% end -%>

@@ -8,11 +8,12 @@
     "bootstrap": "^5.2.2",
     "chokidar": "^3.5.3",
     "esbuild": "^0.15.14",
-    "esbuild-sass-plugin": "^2.4.0"
+    "esbuild-sass-plugin": "^2.4.0",
+    "stimulus-reveal-controller": "^4.0.0"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",
-     "start": "node esbuild-dev.config.js",
-     "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "start": "node esbuild-dev.config.js",
+    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   }
 }

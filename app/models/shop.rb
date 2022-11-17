@@ -8,5 +8,8 @@
 #  updated_at :datetime         not null
 #
 class Shop < ApplicationRecord
+  has_many :opening_days, dependent: :destroy
   validates :name, presence: true
+
+  accepts_nested_attributes_for :opening_days
 end

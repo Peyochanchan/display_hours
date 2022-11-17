@@ -1,3 +1,9 @@
-<%= link_to 'Back to shops list', shops_path, class: "btn btn-outline-dark m-3"%>
-
 <h1 class="text-center"><b><%= @shop.name %></b></h1>
+
+<%= render 'shared/opening_days', shop: @shop %>
+
+<% if  !@shop.opening_days.empty? %>
+  <div class="text-center">
+    <%= link_to 'Editer les horaires', edit_shop_opening_day_path(@shop, @shop.opening_days.first.id), class: "btn btn-outline-dark my-2" %>
+  </div>
+<% end -%>

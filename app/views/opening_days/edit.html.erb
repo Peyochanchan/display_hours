@@ -1,0 +1,22 @@
+<div class="d-flex flex-column">
+
+  <div class="p-2">
+
+    <h1 class="text-center mb-3">
+      <b>Modify opening hours for <%= @shop.name %></b>
+    </h1>
+
+    <div class="container d-flex flex-column align-items-center justify-content-center">
+      <h2 class="border-bottom m-2">
+        <%= @opening_day.weekday.capitalize %>
+      </h2>
+      <%= render 'form', shop: @shop, opening_day: @opening_day %>
+    </div>
+
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <%= render 'shared/opening_days', shop: @shop %>
+  </div>
+
+</div>

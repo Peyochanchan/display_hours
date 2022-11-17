@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Shops", type: :request do
-  let(:shop) { FactoryBot.create(:shop) }
+  let(:shop) { FactoryBot.create(:shop_with_weekdays) }
   let(:attributes) { { name: 'Chez Malou' } }
   let(:shop_one) { instance_double(Shop) }
 
@@ -49,6 +49,10 @@ RSpec.describe "Shops", type: :request do
       expect(response).to redirect_to(assigns(:shop))
       follow_redirect!
       expect(response.body).to include("shop was successfully created.")
+    end
+
+    it 'expect to create 7 days with shop\'s creation' do
+      expect(shop.opening_days.length).to eql(7)
     end
   end
 
