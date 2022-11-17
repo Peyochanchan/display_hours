@@ -1,0 +1,30 @@
+<div class="hours d-flex justify-content-center my-4">
+
+  <div>
+    <p><b>Opening Hours:&nbsp;</b></p>
+  </div>
+
+  <div class="weekdays d-flex flex-column">
+    <% shop.opening_days.order(id: :asc).rotate(today).each_with_index do |day, i| %>
+
+      <div class="weekday d-flex">
+
+        <div class="col-4">
+          <p><%= day.weekday %></p>
+        </div>
+
+        <div class="col-8" style="margin-right: 100px">
+          <% if day.closed? %>
+            <p>Fermé</p>
+          <% else %>
+            <p><%= display_hours(day) %></p>
+          <% end -%>
+
+        </div>
+
+      </div>
+
+    <% end -%>
+  </div>
+
+</div>

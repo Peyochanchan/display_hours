@@ -16,9 +16,13 @@
         </h1>
         <div class="buttons my-3">
           <%= link_to 'Edit shop\'s name', edit_shop_path(shop), class: "btn btn-outline-dark mx-1" %>
+          <% if  !shop.opening_days.empty? %>
+            <%= link_to 'Edit hours', edit_shop_opening_day_path(shop, shop.opening_days.first.id), class: "btn btn-outline-dark mx-1" %>
+          <% end -%>
           <%= link_to 'Delete shop', shop_path(shop), class: "btn btn-outline-dark mx-1", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
         </div>
       </div>
+      <%= render 'shared/opening_days', shop: shop %>
     </div>
   <% end -%>
 </div>

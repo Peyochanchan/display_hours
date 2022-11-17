@@ -1,5 +1,6 @@
 class ShopsController < ApplicationController
-  before_action :set_params, only: %i[show edit update destroy]
+  before_action :set_params, only: %i[show edit update destroy create_week_days]
+  after_action :create_week_days, only: :create
 
   def index
     @shops = Shop.all
@@ -38,6 +39,13 @@ class ShopsController < ApplicationController
   end
 
   private
+
+  def create_week_days
+    @days = Date::DAYNAMES
+    @days.each do |d|
+      OpeningDay.create!(weekday: d, shop_id: @shop.id)
+    end
+  end
 
   def set_params
     @shop = Shop.find(params[:id])
