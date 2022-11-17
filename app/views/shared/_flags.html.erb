@@ -1,0 +1,13 @@
+<%= link_to 'Back to shops list', shops_path, class: "btn btn-outline-dark m-3" unless params[:action].include?('index')%>
+
+<div style="position: fixed; top: 12px; right: 16px;">
+   <% if I18n.locale == :fr %>
+    <h2 class="text-end">
+      <%= link_to "Traduire en 🇬🇧", { locale: 'en' }, class: "btn btn-outline-dark rounded" %>
+    </h2>
+  <% elsif I18n.locale == :en %>
+    <h2 class="text-end">
+      <%= link_to "Translate to 🇫🇷", { locale: 'fr' }, class: "btn btn-outline-dark rounded" %>
+    </h2>
+    <% end -%>
+</div>
