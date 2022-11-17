@@ -1,7 +1,7 @@
 <div class="hours d-flex justify-content-center my-4">
 
   <div>
-    <p><b>Opening Hours:&nbsp;</b></p>
+    <p><b><%= t "day.hours", locale: locale %> :&nbsp;</b></p>
   </div>
 
   <div class="weekdays d-flex flex-column">
@@ -10,12 +10,12 @@
       <div class="weekday d-flex">
 
         <div class="col-4">
-          <p><%= day.weekday %></p>
+          <p><%= t("day.weekday.#{translated(day)}", locale: locale) %></p>
         </div>
 
         <div class="col-8" style="margin-right: 100px">
           <% if day.closed? %>
-            <p>Fermé</p>
+            <p><%= t "day.closed", locale: locale %></p>
           <% else %>
             <p><%= display_hours(day) %></p>
           <% end -%>

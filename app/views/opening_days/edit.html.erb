@@ -8,7 +8,7 @@
 
     <div class="container d-flex flex-column align-items-center justify-content-center">
       <h2 class="border-bottom m-2">
-        <%= @opening_day.weekday.capitalize %>
+        <%= t("day.weekday.#{translated(@opening_day)}", locale: locale).capitalize %>
       </h2>
       <%= render 'form', shop: @shop, opening_day: @opening_day %>
     </div>
