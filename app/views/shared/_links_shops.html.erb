@@ -1,0 +1,15 @@
+<%= link_to 'Back to shops list', shops_path, class: "btn btn-outline-dark m-3" unless params[:action].include?('index')%>
+<%= link_to 'Back to shop', shop_path(@shop), class: "btn btn-outline-dark m-3" unless params[:action].include?('index')%>
+
+<div style="position: fixed; top: 12px; right: 16px;">
+   <% case I18n.locale %>
+    <% when :fr %>
+    <h2 class="text-end">
+      <%= link_to "Traduire en 🇬🇧", { locale: 'en' }, class: "btn btn-outline-dark rounded translate" %>
+    </h2>
+    <% when :en %>
+    <h2 class="text-end">
+      <%= link_to "Translate to 🇫🇷", { locale: 'fr' }, class: "btn btn-outline-dark rounded translate" %>
+    </h2>
+    <% end -%>
+</div>
