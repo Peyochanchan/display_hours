@@ -26,42 +26,32 @@ class OpeningDay < ApplicationRecord
   before_update :reset_useless_hours
   before_create :creating_hours
 
-  ZERO = Time.at(0)
   belongs_to :shop
+
   validates :weekday, inclusion: { in: Date::DAYNAMES }
   validates_uniqueness_of :weekday, scope: [:shop_id]
 
-  validates_each :opening_time_one, allow_nil: true do |record, attr, value|
-    if value > record.closing_time_one && !record.closed?
-      record.errors.add attr, "is supposed to be earlier than Closing time one"
-    end
-  end
+  validates :opening_time_one, allow_nil: true, opening_earlier: true
+  validates :opening_time_two, allow_nil: true, closing_later: true
+  validates :closing_time_two, allow_nil: true, opening_later: true
 
-  validates_each :opening_time_two, allow_nil: true do |record, attr, value|
-    if value <= record.closing_time_one && record.lunch_break?
-      record.errors.add attr, "is supposed to be later than Closing time one"
-    end
-  end
+  private
 
-  validates_each :closing_time_two, allow_nil: true do |record, attr, value|
-    if value < record.opening_time_two
-      record.errors.add attr, "is supposed to be later than Opening time two" if value != Time.zone.parse('Jan 2000')
-    end
-  end
+  ZERO = Time.at(0)
 
   def reset_useless_hours
-    if self.closed?
-      self.opening_time_one = ZERO
-      self.closing_time_one = ZERO
-      self.opening_time_two = ZERO
-      self.closing_time_two = ZERO
-    end
+    return unless closed?
+
+    self.opening_time_one = ZERO
+    self.closing_time_one = ZERO
+    self.opening_time_two = ZERO
+    self.closing_time_two = ZERO
   end
 
   def creating_hours
     self.opening_time_one = ZERO.change(hour: 1)
     self.closing_time_one = ZERO.change(hour: 1)
-    self.opening_time_two = ZERO.change(hour: 15)
-    self.closing_time_two = ZERO.change(hour: 19)
+    self.opening_time_two = ZERO.change(hour: 14)
+    self.closing_time_two = ZERO.change(hour: 18)
   end
 end

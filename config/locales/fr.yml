@@ -1,4 +1,7 @@
 fr:
+  time:
+    formats:
+      default: "%H:%M"
   day:
     hours: 'Horaires'
     weekday:
@@ -10,3 +13,4 @@ fr:
       5: 'vendredi'
       6: 'samedi'
     closed: 'Fermé'
+    not_edited: '— à éditer —'

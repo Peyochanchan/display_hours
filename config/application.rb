@@ -1,6 +1,20 @@
 require_relative "boot"
 
-require "rails/all"
+require "rails"
+
+%w(
+  active_record/railtie
+  action_controller/railtie
+  action_view/railtie
+  active_job/railtie
+  action_cable/engine
+  rails/test_unit/railtie
+).each do |railtie|
+    begin
+    require railtie
+  rescue LoadError
+  end
+end
 
 Bundler.require(*Rails.groups)
 
@@ -25,6 +39,6 @@ module DisplayHours
       end if File.exists?(env_file)
     end
 
-    config.time_zone = 'Paris'
+    # config.time_zone = 'Paris'
   end
 end

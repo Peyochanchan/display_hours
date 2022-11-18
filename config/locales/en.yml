@@ -30,6 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  time:
+    formats:
+      default: "%l.%M%p"
   day:
     hours: 'Hours'
     weekday:
@@ -41,3 +44,4 @@ en:
       5: 'friday'
       6: 'saturday'
     closed: 'Closed'
+    not_edited: '— not edited yet —'

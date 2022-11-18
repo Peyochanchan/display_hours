@@ -18,6 +18,11 @@ a {
   }
 }
 
+.translate {
+  z-index: 10;
+  background-color: white;
+}
+
 .weekday:first-child {
     font-weight: bolder;
 }
