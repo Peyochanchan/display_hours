@@ -8,6 +8,7 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @links = ['index', 'new']
   end
 
   def new

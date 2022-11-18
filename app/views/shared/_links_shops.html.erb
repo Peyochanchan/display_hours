@@ -1,5 +1,5 @@
 <%= link_to 'Back to shops list', shops_path, class: "btn btn-outline-dark m-3" unless params[:action].include?('index')%>
-<%= link_to 'Back to shop', shop_path(@shop), class: "btn btn-outline-dark m-3" unless params[:action].include?('index')%>
+<%= link_to 'Back to shop', shop_path(@shop), class: "btn btn-outline-dark m-3" unless (params[:action] && ['index', 'new']).any? %>
 
 <div style="position: fixed; top: 12px; right: 16px;">
    <% case I18n.locale %>
